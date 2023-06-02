@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const Post = require('./model/post');
 const app = express();
 
-mongoose.connect("mongodb+srv://calmthestorm98:9MJY4EDvVCXWHSTY@cluster0.rca2smj.mongodb.net/node-angular?retryWrites=true&w=majority")
+mongoose.connect(/*secret mongodb credential here*/)
   .then( () => {
     console.log("Connected to database!");
   })
@@ -36,10 +36,13 @@ app.post("/api/posts", (req, res, next) => {
     title: req.body.title,
     content: req.body.content
   });
-  post.save();
-  res.status(201).json({
-    message: "response send successfully"
-  })
+  post.save().then((savedPost) =>{
+    res.status(201).json({
+      message: "response send successfully",
+      postId: post._id
+    });
+  });
+
 });
 
 app.get("/api/posts", (req, res, next) => {
