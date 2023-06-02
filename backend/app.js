@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const Post = require('./model/post');
 const app = express();
 
-mongoose.connect(/*secret mongodb credential here*/)
+mongoose.connect("mongodb+srv://calmthestorm98:9MJY4EDvVCXWHSTY@cluster0.rca2smj.mongodb.net/node-angular?retryWrites=true&w=majority")
   .then( () => {
     console.log("Connected to database!");
   })
