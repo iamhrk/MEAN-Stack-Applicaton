@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const Post = require('./model/post');
 const app = express();
 
-mongoose.connect(/*secret mongodb credential here*/)
+mongoose.connect("mongodb+srv://calmthestorm98:9MJY4EDvVCXWHSTY@cluster0.rca2smj.mongodb.net/node-angular?retryWrites=true&w=majority")
   .then( () => {
     console.log("Connected to database!");
   })
@@ -43,6 +43,20 @@ app.post("/api/posts", (req, res, next) => {
     });
   });
 
+});
+
+app.put("/api/posts/:id",(req, res, next) => {
+  const post = new Post({
+    _id: req.body.id,
+    title: req.body.title,
+    content: req.body.content
+  });
+  Post.updateOne({_id: req.params.id }, post).then(result => {
+    console.log(result);
+    res.status(200).json({
+      message: "Update successful!"
+    });
+  });
 });
 
 app.get("/api/posts", (req, res, next) => {
