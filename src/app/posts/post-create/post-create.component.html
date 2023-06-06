@@ -12,6 +12,10 @@
       #title="ngModel">
       <mat-error *ngIf="title.invalid">Please enter a post title with more than 3 characters</mat-error>
     </mat-form-field>
+    <div>
+      <button mat-stroked-button type="button" (click)="selectImage.click()">Select Image</button>
+      <input type="file" #selectImage>
+    </div>
     <mat-form-field>
       <mat-label>post content</mat-label>
     <textarea matInput
