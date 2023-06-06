@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const Post = require('./model/post');
 const app = express();
 
-mongoose.connect("mongodb+srv://calmthestorm98:9MJY4EDvVCXWHSTY@cluster0.rca2smj.mongodb.net/node-angular?retryWrites=true&w=majority")
+mongoose.connect(/*secret mongodb credential here*/)
   .then( () => {
     console.log("Connected to database!");
   })
@@ -66,6 +66,16 @@ app.get("/api/posts", (req, res, next) => {
       message: "Posts fetched successfully",
       posts: documents
     });
+  });
+});
+
+app.get("/api/posts/:id", (req, res, next) => {
+  Post.findById(req.params.id).then(post => {
+    if(post){
+      res.status(200).json(post);
+    } else{
+      res.status(404).json({message: "Post not found!"})
+    }
   });
 });
 
