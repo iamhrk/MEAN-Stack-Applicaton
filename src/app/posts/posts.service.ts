@@ -19,7 +19,7 @@ export class PostsService{
       return postData.posts.map(post=>{
         return {
           title : post.title,
-          content: post.title,
+          content: post.content,
           id: post._id
         }
       })
