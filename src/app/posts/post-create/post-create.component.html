@@ -10,7 +10,7 @@
     </mat-form-field>
     <div>
       <button mat-stroked-button type="button" (click)="selectImage.click()">Select Image</button>
-      <input type="file" #selectImage>
+      <input type="file" #selectImage (change)="onImageSelect($event)">
     </div>
     <mat-form-field>
       <mat-label>post content</mat-label>
